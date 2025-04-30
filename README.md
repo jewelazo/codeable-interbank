@@ -1,66 +1,73 @@
-# Reto Técnico: Procesamiento de Transacciones Bancarias (CLI)
+# 🧾 Transaction Report with Automated Analysis
 
-## Objetivo:
+## 📌 Introduction
 
-Desarrolla una aplicación de línea de comandos (CLI) que procese un archivo CSV con transacciones bancarias y genere un reporte que incluya:
+This project is a python-based solution designed to analyze a CSV file containing financial transactions. The goal is to automate the calculation of key metrics such as the final balance, the highest transaction amount, and the count of transactions by type (Credit and Debit), presenting the results in a clear and readable format in the console.
 
-- **Balance Final:**  
-  Suma de los montos de las transacciones de tipo "Crédito" menos la suma de los montos de las transacciones de tipo "Débito".
+## 🚀 Execution Instructions
 
-- **Transacción de Mayor Monto:**  
-  Identificar el ID y el monto de la transacción con el valor más alto.
-
-- **Conteo de Transacciones:**  
-  Número total de transacciones para cada tipo ("Crédito" y "Débito").
-
----
-
-## Instrucciones
-
-1. **Repositorio Base:**  
-   Clona o haz un fork del repositorio base disponible en:  
-   `https://github.com/codeableorg/interbank-academy-25`
-
-2. **Entrada de Datos:**  
-   La aplicación deberá leer un archivo CSV. Ejemplo de contenido:
-
+- Clone the project:
    ```
-   id,tipo,monto
-   1,Crédito,100.00
-   2,Débito,50.00
-   3,Crédito,200.00
-   4,Débito,75.00
-   5,Crédito,150.00
+      git clone git@github.com:jewelazo/codeable-interbank.git
    ```
+- Project execution:
+   - With docker:
+      
+      - Create image:
+      ```
+         docker build -t solution .
+      ```
+      - Run a container and open a shell
 
-3. **Salida del Programa:**  
-   La aplicación debe mostrar el reporte final en la terminal.  
-   Ejemplo de salida:
+      ```
+         docker run -it solution /bin/bash
+      ```
 
-   ```
-   Reporte de Transacciones
-   ---------------------------------------------
-   Balance Final: 325.00
-   Transacción de Mayor Monto: ID 3 - 200.00
-   Conteo de Transacciones: Crédito: 3 Débito: 2
-   ```
+      - Run tests:
+      ```
+         pytest
+      ```
 
-4. **Lenguaje de Programación:**  
-   Utiliza el lenguaje de tu preferencia. Opciones recomendadas:
+      - Execute main script:
+      ```
+         python report_generator.py
+      ```
+   
+   - Without docker:
 
-   - Python
-   - Java
-   - C#
-   - JavaScript (Node.js)
+      - Create a virtual environmnent:
+      ```
+         python -m venv .venv
+      ```
+      - Activate the virtual environment:
+      ```
+         .\.venv\Scripts\activate (windows)
+         source .venv/bin/activate (linux )
+      ```
+      - Go to project folder and install libraries:
+      ```
+         (env) pip install -r requirements.txt
+      ```
+      - Run tests:
+      ```
+         pytest
+      ```
+      - Execute main script:
+      ```
+         python report_generator.py
+      ```
 
-5. **README del Proyecto:**  
-   Incluye un archivo `README.md` con la siguiente estructura:
+## 🧠 Approach and Solution
+   The implemented logic focuses on simplicity, clarity, and modularity. The program loads transaction data from a CSV file using pandas, then filters and aggregates the data to compute key metrics like final balance, highest transaction, and transaction counts by type. Initially, I used csv standard library, but the code became cluttered with manual loops and conditionals. Switching to pandas significantly reduced complexity and improved readability. I separated responsibilities by using a dedicated presenter.py module to handle the output formatting, keeping the core logic in report_generator.py clean and focused. I included Docker support to ensure easy and consistent execution across environments.
 
-   - **Introducción:** Breve descripción del reto y su propósito.
-   - **Instrucciones de Ejecución:** Cómo instalar dependencias y ejecutar la aplicación.
-   - **Enfoque y Solución:** Lógica implementada y decisiones de diseño.
-   - **Estructura del Proyecto:** Archivos y carpetas principales.
-
-6. **Documentación y Calidad del Código:**
-   - Código bien documentado y fácil de leer.
-   - Comentarios explicando pasos clave y lógica del programa.
+## 🗂️  Project Structure
+```
+📦interbank-academy-25
+ ┣ 📂tests
+ ┃ ┣ 📜test_data.csv             # Test sample file containing financial transactions
+ ┃ ┗ 📜test_report_generator.py  # Unit test for validating script logic
+ ┣ 📜Dockerfile                  # Docker configuration for containerized execution
+ ┣ 📜data.csv                    # Sample file containing financial transactions
+ ┣ 📜presenter.py                # Handles console output formatting
+ ┣ 📜report_generator.py         # Main script that loads, analyzes, and presents data
+ ┗ 📜requirements.txt            # Python dependencies
