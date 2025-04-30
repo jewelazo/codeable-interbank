@@ -4,7 +4,7 @@
 
 This project is a python-based solution designed to analyze a CSV file containing financial transactions. The goal is to automate the calculation of key metrics such as the final balance, the highest transaction amount, and the count of transactions by type (Credit and Debit), presenting the results in a clear and readable format in the console.
 
-## 📌 Execution Instructions
+## 🚀 Execution Instructions
 
 - Clone the project:
    ```
@@ -57,10 +57,10 @@ This project is a python-based solution designed to analyze a CSV file containin
          python report_generator.py
       ```
 
-## 📌 Approach and Solution
+## 🧠 Approach and Solution
    The implemented logic focuses on simplicity, clarity, and modularity. The program loads transaction data from a CSV file using pandas, then filters and aggregates the data to compute key metrics like final balance, highest transaction, and transaction counts by type. Initially, I used csv standard library, but the code became cluttered with manual loops and conditionals. Switching to pandas significantly reduced complexity and improved readability. I separated responsibilities by using a dedicated presenter.py module to handle the output formatting, keeping the core logic in report_generator.py clean and focused. I included Docker support to ensure easy and consistent execution across environments.
 
-## 📌 Project Structure
+## 🗂️  Project Structure
 ```
 📦interbank-academy-25
  ┣ 📂tests
